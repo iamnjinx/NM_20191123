@@ -1,0 +1,68 @@
+body{
+    background-color: black;
+    font-family: 'Courier New', monospace;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.bg{
+    position: fixed;
+}
+
+.fade{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#mid1{
+    /*border: 1px solid blue; */
+    background-color: aqua;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    aspect-ratio : 1 / 1;
+    height: 50%;
+}
+
+.button{
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    color: black;
+    text-align: center;
+}
+
+#info{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#infoBG{
+    background-color: gold; opacity: 0.2;
+    width: 100%;
+    height: 100%;
+}
+
+#info p{
+    position: absolute;
+    top: 0;
+    padding: 10%;
+    color: white;
+    font-size: larger;
+}

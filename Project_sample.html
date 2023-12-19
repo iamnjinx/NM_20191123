@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="final.css">
+    <link rel="stylesheet" href="library.css">
+    <link rel="stylesheet" href="emotions.css">
+    <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+    <div class="vid">
+        <video width="100%" height="100%" playsinline autoplay muted loop id="bgVideo">
+            <source id="videoSource" src="Vid/20191123_IMA_Final.mp4" type="video/mp4">
+        </video>
+        <img src="Img/SpaceTexts.png" alt="이미지가 없나봐요.." width="100%" height="100%" id="my_image">
+
+    </div>
+
+    <div class="fade">
+    </div>
+
+    <div class="buttons">
+        <div id="joy" class="button">
+        </div>
+        <div id="sadness" class="button">
+        </div>
+        <div id="fear" class="button">
+        </div>
+        <div id="disgust" class="button">
+        </div>
+        <div id="anger" class="button">
+        </div>
+    </div>
+
+    <div class="gallery">
+        <div id="vid_thumb0" class="glr"><img src="Img/Vid.png" alt="이미지가 없나봐요.." width="90%" height="90%"></div>
+        <div id="img_thumb1" class="glr"><img src="Img/SpaceTexts.png" alt="이미지가 없나봐요.." width="90%" height="90%"></div>
+        <div id="img_thumb2" class="glr"><img src="Img/MemorialPoint.png" alt="이미지가 없나봐요.." width="90%" height="90%"></div>
+        <div id="img_thumb3" class="glr"><img src="Img/DiaryNote.png" alt="이미지가 없나봐요.." width="90%" height="90%"></div>
+    </div>
+
+    <div class="nav">
+        <a href="Project_sample.html">Project Sample</a>
+        <a href="index.html">Main</a>
+    </div>
+
+    <div id="ln">
+        <div id="ln_info">
+            <h1 style="color: white;">FALL</h1>
+            <p style="color: white">Simulation of a journey about finding the emotions, which fell apart after break up, one by one to find how to love again.
+            <br><br><br><br>
+            Artist: Njinx
+            <br><br>
+            Engine used: Unity
+            <br><br>
+            Date: 2023.12.18
+            <br><br>
+            Time Spent: 1 month
+            <br><br>
+
+            
+            </p>
+
+        </div>
+    </div>
+
+    <div id="ln_t">
+        <h3><- About</h3>
+    </div>
+
+    <div id="rn">
+        <div id="rn_info">
+            <h3 style="color: white;">This story is based on my friend's experience.</h3>
+            <p>
+                <br><br>
+                After break up, you lost every emotions you had and became void. <br><br>
+                Then you started writing your diaries about what you feel. <br><br>
+                As time pasts, you slowly find you emotions one by one.<br><br><br><br>
+                The memories you undergo, the behaviors you did all affects your emotions.<br><br><br><br>
+                Spacial Texts (Picture 1)<br> reflects your thoughts.<br><br>
+                Memorial Points (Picture 2)<br> rewinds your memory.<br><br>
+                Diary Notes (Picture 3)<br> directly shows how you felt.<br><br>
+
+
+            </p>
+        </div>
+    </div>
+
+    <div id="rn_t">
+        <h3>Process->   </h3>
+    </div>
+
+    <div id="bn"> 
+        <p> Copyright © 2023 Njinx</p>
+        <p> Email: iamnjinx@gmail.com </p>
+        <p> Something in footer </p>
+        <a href="https://www.instagram.com/njinx_yn/"><img src="Img/instagram.png" alt="이미지가 없나봐요.." height="75px" width="75px" id="instagram"></a>
+    </div>
+
+    <script>
+        var isShown = false;
+        var bn_isShown = false;
+        var gallery_isShown;
+
+        var ln_isShown = false;
+        var rn_isShown = false;
+        var ln_info = false;
+        var rn_info = false;
+
+        var nav_isShown = false;
+        var logo_isShown = false;
+
+        const files = ["Vid/20191123_IMA_Final.mp4", "Img/SpaceTexts.png", "Img/MemorialPoint.png", "Img/DiaryNote.png"]
+        var currentID = 0;
+
+        $(document).ready(function(){
+            $("div.vid img").hide(0);
+            $("div#info").hide(0);
+            $("div.buttons").hide(0);
+            $("div.fade").hide(0);
+            $("div.nav").hide(0);
+            $("div#ln_info").hide(0);
+            $("div#rn_info").hide(0);
+            
+            $( document ).on( "mousemove", function( event ) {
+                var mouseX = event.pageX;
+                var mouseY = event.pageY;
+
+                if(mouseX > (window.innerWidth * 1/3) && mouseX < (window.innerWidth * 2/3) && mouseY > (window.innerHeight * 1/4) && mouseY < (window.innerHeight * 3/4)){
+                    if(!isShown && !nav_isShown){
+                        isShown = true;
+                        showButtons();
+                    }
+                }
+                else{
+                    if(isShown){
+                        isShown = false;
+                        hideButtons();
+                    }
+                }
+
+                if(mouseY < (window.innerHeight * 2/10)){
+                    if(!gallery_isShown){
+                        $("div.gallery").animate({opacity: '1', top: '5%'});
+                        gallery_isShown = true;
+                    }
+                }
+                else{
+                    if(gallery_isShown){
+                        $("div.gallery").animate({opacity: '0', top: '0%'});
+                        gallery_isShown = false;
+                    }
+                }
+
+                if(mouseY > (window.innerHeight * 9/10)){
+                    if(!bn_isShown){
+                        $("div#bn").animate({opacity: '1', bottom: '2.5%'});
+                        bn_isShown = true;
+                    }
+                }
+                else{
+                    if(bn_isShown){
+                        $("div#bn").animate({opacity: '0', bottom: '0%'});
+                        bn_isShown = false;
+                    }
+                }
+
+                if(mouseY > (window.innerHeight * 9/10)){
+                    if(!bn_isShown){
+                        $("div#bn").animate({opacity: '1', bottom: '2.5%'});
+                        bn_isShown = true;
+                    }
+                }
+                else{
+                    if(bn_isShown){
+                        $("div#bn").animate({opacity: '0', bottom: '0%'});
+                        bn_isShown = false;
+                    }
+                }
+
+                if(mouseX < (window.innerWidth * 1/10)){
+                    if(!ln_isShown){
+                        $("div#ln").animate({opacity: '0.75', width: '2%'});
+                        $("div#ln_t").animate({opacity: '1', left: '5%'});
+                        ln_isShown = true;
+                    }
+                }
+                else{
+                    if(ln_isShown){
+                        $("div#ln").animate({opacity: '0', left: '0%', width: '0%'});
+                        $("div#ln_t").animate({opacity: '0', left: '0%'});
+                        $("div#ln_info").animate({opacity: '0'});
+                        $("div#ln_info").hide();
+                        ln_isShown = false;
+                    }
+                }
+
+                if(mouseX > (window.innerWidth * 9/10)){
+                    if(!rn_isShown){
+                        $("div#rn").animate({opacity: '0.75', width: '2%'});
+                        $("div#rn_t").animate({opacity: '1', right: '5%'});
+                        rn_isShown = true;
+                    }
+                }
+                else{
+                    if(rn_isShown){
+                        $("div#rn").animate({opacity: '0', right: '0%', width: '0%'});
+                        $("div#rn_t").animate({opacity: '0', right: '0%'});
+                        $("div#rn_info").animate({opacity: '0'});
+                        $("div#rn_info").hide();
+                        rn_isShown = false;
+                    }
+                }
+            });
+
+            $("div.nav").mouseleave(function(){
+                $("div.nav").animate({opacity: '0', width: '0'});
+                $("div.nav a").hide();
+                nav_isShown = false;
+            });
+            $('div#tn img').hover(function(){
+                $("div#tn img").animate({scale: '1.2'});
+            })
+            $('div#tn img').click(function(){
+                $("div.nav").show();
+                $("div.nav a").show();
+                $("div.nav").animate({opacity: '0.75', width: '50%'});
+                nav_isShown = true;
+                hideButtons();
+            })
+
+
+            $('div#ln').click(function(){
+                $("div#ln_info").show();
+                $("div#ln").animate({left: '1%', width: '30%'});
+                $("div#ln_t").animate({left: '30%'});
+                $("div#ln_info").animate({opacity: '1'});
+            })
+
+            $('div#rn').click(function(){
+                $("div#rn_info").show();
+                $("div#rn").animate({right: '1%', width: '30%'});
+                $("div#rn_t").animate({right: '30%'});
+                $("div#rn_info").animate({opacity: '1'});
+            })     
+
+            function showButtons(){
+                $("div.buttons").show();
+                $("div.buttons").animate({rotate: '360deg'});
+                $("div#joy").animate({opacity: '1', top: '27.5%'});
+                $("div#sadness").animate({opacity: '1', left: '27.5%'});
+                $("div#anger").animate({opacity: '1', right: '27.5%'});
+                $("div#fear").animate({opacity: '1', bottom: '27.5%', right: '35.5%'});
+                $("div#disgust").animate({opacity: '1', bottom: '27.5%', left: '35.5%'});
+                $("div#tn img").animate({opacity: '1'});
+            }
+
+            function hideButtons(){
+                $("div.buttons").animate({rotate: '0deg'});
+                $("div#joy").animate({top: '0%'}, {queue: false });
+                $("div#joy").animate({opacity: '0'}, {queue: false });
+
+                $("div#sadness").animate({left: '0%'}, {queue: false });
+                $("div#sadness").animate({opacity: '0'}, {queue: false });
+                
+                $("div#anger").animate({right: '0%'}, {queue: false });
+                $("div#anger").animate({opacity: '0'}, {queue: false });
+                
+                $("div#fear").animate({bottom: '0%' , right: '20%'}, {queue: false });
+                $("div#fear").animate({opacity: '0'}, {queue: false });
+                
+                $("div#disgust").animate({bottom: '0%', left: '20%'}, {queue: false });
+                $("div#disgust").animate({opacity: '0'}, {queue: false });
+                $("div#tn img").animate({opacity: '0', scale: '1'});
+            }
+
+            function emo_button(id){
+                $("div.nav").show();
+                $("div.nav a").show();
+                $("div.nav").animate({opacity: '0.75', width: '50%'});
+                nav_isShown = true;
+                hideButtons();
+                const infoBgColors = ['blue', 'gold', 'green', 'indigo', 'red'];
+                const navColors = ['lightblue', 'lightyellow', 'lightgreen', '#CBC3E3', 'lightcoral'];
+                $("div#infoBG").css('background-color', infoBgColors[id]);
+                $("div.nav").css('background-color', navColors[id]);
+            }
+
+            $('div#sadness').click(function(){
+                emo_button(0);
+            });
+            
+            $('div#joy').click(function(){
+                emo_button(1);
+            });
+
+            $('div#disgust').click(function(){
+                emo_button(2);
+            });
+            
+            $('div#fear').click(function(){
+                emo_button(3);
+            });
+            $('div#anger').click(function(){
+                emo_button(4);
+            });
+
+            function changeMain(id){
+                if(currentID != id){
+                    if(id == 0){
+                        currentID = id;
+                        $("div.vid video").show();
+                        $("div.vid img").hide(0);
+                        // Get the video source element
+                        var source = $('#videoSource');
+
+                        // Set the new source URL
+                        var newSource = files[0];
+
+                        source.attr('src', newSource);
+
+                        // Load the new video source
+                        $('#bgVideo')[0].load(); 
+                    }
+                    else{
+                        currentID = id;
+                        $("div.vid img").show();
+                        $("div.vid video").hide(0);
+                        $("#my_image").attr("src",files[id]);
+                    }
+                }
+            }
+
+            $('div#vid_thumb0').click(function(){
+                changeMain(0);
+            })
+            $('div#img_thumb1').click(function(){
+                changeMain(1);
+            })
+            $('div#img_thumb2').click(function(){
+                changeMain(2);
+            })
+            $('div#img_thumb3').click(function(){
+                changeMain(3);
+            })
+        });
+    </script>
+</body>
+</html>
